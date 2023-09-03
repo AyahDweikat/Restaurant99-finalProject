@@ -54,14 +54,38 @@ export const updatePassword = async (req, res, next) => {
   return res.json({ message: "success" });
 };
 
-// export const shareProfile = async (req, res, next) => {
-//   const user = await userModel
-//     .findById(req.params.id)
-//     .select("userName email ");
+export const getProfile = async (req, res, next) => {
+  const user = await userModel
+    .findById(req.user._id)
+    .select("userName email role status profilePic coverPic ");
 
-//   if (!user) {
-//     return next(new Error("invalid profile id"));
-//   } else {
-//     return res.json({ message: "success", user });
-//   }
-// };
+  if (!user) return next(new Error("invalid user"));
+  return res.json({ message: "success", user });
+};
+
+export const getAllUsers = async (req, res, next) => {
+  const users = await userModel
+    .find({role:'User'})
+    .select("userName email role status profilePic ");
+
+  if (!users) return next(new Error("No Users"));
+  return res.json({ message: "success", users });
+};
+
+export const getAllEmployees = async (req, res, next) => {
+  const employees = await userModel
+    .find({role:'Employee'})
+    .select("userName email role status profilePic");
+
+  if (!employees) return next(new Error("No Employeess"));
+  return res.json({ message: "success", employees });
+};
+
+export const getAllAdmins = async (req, res, next) => {
+  const admins = await userModel
+    .find({role:'Admin'})
+    .select("userName email role status profilePic");
+
+  if (!admins) return next(new Error("No Admins"));
+  return res.json({ message: "success", admins });
+};

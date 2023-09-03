@@ -50,7 +50,7 @@ const userSchema = new Schema ({
         type: String,
         enum: ['Single', 'Married', 'Divorced', 'Widowed'],
     },
-    adress:{
+    address:{
         type:String,
     },
     forgetCode:{

@@ -25,7 +25,7 @@ export const auth = (accessRoles = []) => {
     if (!accessRoles.includes(user.role)) {
       return next(new Error(`Not Authorized User`, { cause: 403 }));
     }
-    if (parseInt(user?.changePasswordTime.getTime() / 1000) > decoded.iat) {
+    if(user.changePasswordTime && parseInt(user?.changePasswordTime.getTime() / 1000) > decoded.iat) {
       return next(new Error(`Expired Token`, { cause: 400 }));
     }
     req.user = user;

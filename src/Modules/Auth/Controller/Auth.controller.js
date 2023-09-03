@@ -13,8 +13,10 @@ export const signup = async (req, res, next) => {
   }
   const hashPassword = hash(password);
   const token = generateToken({ email }, process.env.SIGNUP_TOKEN, 60 * 5); // 5 minutes
+  const rToken = generateToken({ email }, process.env.SIGNUP_TOKEN, 60 * 60 * 12); // 12 hours
+
   const link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`;
-  const rLink = `${req.protocol}://${req.headers.host}/auth/newConfirmEmail/${token}`;
+  const rLink = `${req.protocol}://${req.headers.host}/auth/newConfirmEmail/${rToken}`;
 
   const html = emailTemplate(link, rLink);
   await sendEmail(email, "Confirm Email", html);
@@ -64,7 +66,7 @@ export const newConfirmEmail = async (req, res) => {
   const link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`;
   const html = emailTemplate(link, "");
   await sendEmail(email, "confirm email", html);
-  return res.status(200).send(`<p>new confirm email is sent to your email</p>`);
+  return res.status(200).json({message: `new confirm email is sent to your email`});
 };
 
 export const login = async (req, res, next) => {

@@ -15,8 +15,3 @@ export const updatePasswordSchema = joi
   })
   .required();
 
-// export const shareProfileSchema = joi
-//   .object({
-//     id: generalFeilds.id,
-//   })
-//   .required();

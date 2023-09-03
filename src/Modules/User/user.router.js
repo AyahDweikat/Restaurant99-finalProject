@@ -32,9 +32,36 @@ router.patch(
   asyncHandler(userController.updatePassword)
 );
 
-// router.get(
-//   "/profile/:profileId",
-//   validation(validators.shareProfileSchema),
-//   asyncHandler(userController.shareProfile)
-// );
+router.patch(
+  "/changeToActive",
+  auth(endPoint.updateStatus),
+  // validation(validators.updatePasswordSchema),
+  asyncHandler(userController.changeToActive)
+);
+router.patch(
+  "/changeToNonActive",
+  auth(endPoint.updateStatus),
+  // validation(validators.updatePasswordSchema),
+  asyncHandler(userController.changeToNonActive)
+);
+router.get(
+  "/getProfile",
+  auth(endPoint.get),
+  asyncHandler(userController.getProfile)
+);
+router.get(
+  "/getAllUsers",
+  auth(endPoint.getAllUsers),
+  asyncHandler(userController.getAllUsers)
+);
+router.get(
+  "/getAllEmployees",
+  auth(endPoint.getAllEmployees),
+  asyncHandler(userController.getAllEmployees)
+);
+router.get(
+  "/getAllAdmins",
+  auth(endPoint.getAllAdmins),
+  asyncHandler(userController.getAllAdmins)
+);
 export default router;
