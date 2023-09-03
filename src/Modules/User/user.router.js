@@ -16,7 +16,6 @@ router.patch(
   validation(validators.profilePicSchema),
   asyncHandler(userController.profilePic)
 );
-
 router.patch(
   "/coverPic",
   auth(endPoint.update),
@@ -31,37 +30,26 @@ router.patch(
   validation(validators.updatePasswordSchema),
   asyncHandler(userController.updatePassword)
 );
-
 router.patch(
-  "/changeToActive",
-  auth(endPoint.updateStatus),
-  // validation(validators.updatePasswordSchema),
-  asyncHandler(userController.changeToActive)
-);
-router.patch(
-  "/changeToNonActive",
-  auth(endPoint.updateStatus),
-  // validation(validators.updatePasswordSchema),
-  asyncHandler(userController.changeToNonActive)
+  "/updateUserInfo",
+  auth(endPoint.update),
+  validation(validators.updateUserInfoSchema),
+  asyncHandler(userController.updateUserInfo)
 );
 router.get(
   "/getProfile",
   auth(endPoint.get),
   asyncHandler(userController.getProfile)
 );
+router.delete(
+  "/deleteUser",
+  auth(endPoint.delete),
+  asyncHandler(userController.deleteUser)
+)
 router.get(
   "/getAllUsers",
   auth(endPoint.getAllUsers),
   asyncHandler(userController.getAllUsers)
 );
-router.get(
-  "/getAllEmployees",
-  auth(endPoint.getAllEmployees),
-  asyncHandler(userController.getAllEmployees)
-);
-router.get(
-  "/getAllAdmins",
-  auth(endPoint.getAllAdmins),
-  asyncHandler(userController.getAllAdmins)
-);
+
 export default router;

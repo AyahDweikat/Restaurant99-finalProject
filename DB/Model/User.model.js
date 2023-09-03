@@ -28,6 +28,28 @@ const userSchema = new Schema ({
     phone:{
         type:String,
     },
+    address:{
+        type:String,
+    },
+    gender:{
+        type: String,
+        enum: ['Male', 'Female'],
+    },
+    maritalStatus:{
+        type: String,
+        enum: ['Single', 'Married', 'Divorced', 'Widowed'],
+    },
+    forgetCode:{
+        type:String,
+        default:null
+    },
+    changePasswordTime:{
+        type:Date,
+    }, 
+    wishList:[{
+        type: Types.ObjectId, 
+        ref: "Product",
+    }],
     salary:{
         type:Number,
         default:0
@@ -41,29 +63,7 @@ const userSchema = new Schema ({
         type:String,
         default:'Active',
         enum : ['Active','Not_Active'],
-    },
-    gender:{
-        type: String,
-        enum: ['Male', 'Female'],
-    },
-    maritalStatus:{
-        type: String,
-        enum: ['Single', 'Married', 'Divorced', 'Widowed'],
-    },
-    address:{
-        type:String,
-    },
-    forgetCode:{
-        type:String,
-        default:null
-    },
-    changePasswordTime:{
-        type:Date,
-    }, 
-    wishList:[{
-        type: Types.ObjectId, 
-        ref: "Product",
-    }]
+    }
 },
 {
     timestamps:true,
