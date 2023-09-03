@@ -22,6 +22,9 @@ const userSchema = new Schema ({
     profilePic:{
         type:Object,
     },
+    coverPic:{
+        type:Object,
+    },
     phone:{
         type:String,
     },

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import * as AuthController from "./Controller/Auth.controller.js";
+import * as AuthController from "./Controller/auth.controller.js";
 import validation from "../../Middleware/validation.js";
-import * as validators from "./Auth.validation.js";
+import * as validators from "./auth.validation.js";
 import { asyncHandler } from './../../Services/errorHandling.js';
 
 const router = Router({ caseSensitive: true });
