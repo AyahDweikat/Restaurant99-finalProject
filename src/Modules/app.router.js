@@ -4,8 +4,10 @@ import { globalErrorHandle } from '../Services/errorHandling.js';
 import connectDB from '../../DB/connection.js';
 import AuthRouter from './Auth/auth.router.js';
 import UserRouter from './User/user.router.js';
-import AdminRouter from './Admin/admin.router.js';
 import EmployeeRouter from './Employee/employee.router.js';
+import AdminRouter from './Admin/admin.router.js';
+import SuperAdminRouter from './SuperAdmin/superAdmin.router.js';
+
 
 
 
@@ -16,8 +18,10 @@ const initApp=(app,express)=>{
     app.use(express.json());
     app.use('/auth', AuthRouter)
     app.use('/user', UserRouter)
-    app.use('/admin', AdminRouter)
     app.use('/employee', EmployeeRouter)
+    app.use('/admin', AdminRouter)
+    app.use('/superAdmin', SuperAdminRouter)
+
 
 
 

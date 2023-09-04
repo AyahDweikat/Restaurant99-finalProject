@@ -45,6 +45,7 @@ export const deleteAdmin = async (req, res, next) => {
     {
       role: "User",
       salary: 0,
+      status:'Active'
     },
     { new: true }
   );
