@@ -32,22 +32,4 @@ router.get(
   auth(endPoint.getAllEmployees),
   asyncHandler(employeeController.getAllEmployees)
 );
-
-// router.get(
-//   "/getAllAdmins",
-//   auth(endPoint.getAllAdmins),
-//   asyncHandler(userController.getAllAdmins)
-// );
-// router.patch(
-//   "/changeToActive",
-//   auth(endPoint.updateStatus),
-//   // validation(validators.updateStatusSchema),
-//   asyncHandler(employeeController.changeActiveStatus)
-// );
-// router.patch(
-//   "/changeToNonActive",
-//   auth(endPoint.updateStatus),
-//   // validation(validators.updateStatusSchema),
-//   asyncHandler(employeeController.changeActiveStatus)
-// );
 export default router;

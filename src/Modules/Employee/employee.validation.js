@@ -19,13 +19,3 @@ export const updateEmployeeSalarySchema = joi
   })
   .required();
 
-export const updateUserInfoSchema = joi
-  .object({
-    userName: joi.string().min(2).max(20),
-    email: generalFeilds.email,
-    phone: joi.string(),
-    address: joi.string(),
-    gender: joi.string(),
-    maritalStatus: joi.string(),
-  })
-  .required();
