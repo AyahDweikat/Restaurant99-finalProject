@@ -20,7 +20,6 @@ const initApp = (app, express) => {
 //     }
 //     next();
 //   });
-
   app.use(cors());
   connectDB();
   app.use(express.json());
