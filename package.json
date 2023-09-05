@@ -9,12 +9,16 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
+  "engines":{
+    "node":"16.17.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
