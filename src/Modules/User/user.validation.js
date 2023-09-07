@@ -1,9 +1,11 @@
 import joi from "joi";
 import { generalFeilds } from "../../Middleware/validation.js";
 
-export const profilePicSchema = {
-  file: generalFeilds.file.required(),
-};
+export const profilePicSchema = joi
+  .object({
+    file: generalFeilds.file
+  })
+  .required();
 export const updatePasswordSchema = joi
   .object({
     oldPassword: generalFeilds.password,
