@@ -22,6 +22,9 @@ const initApp = (app, express) => {
 //   });
   app.use(cors());
   connectDB();
+  app.use('/',(req, res)=>{
+    res.json({message : "App is running"})
+  })
   app.use(express.json());
   app.use("/upload", express.static(fullPath));
   app.use("/auth", AuthRouter);
