@@ -2,12 +2,15 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { globalErrorHandle } from "../Services/errorHandling.js";
 import connectDB from "../../DB/connection.js";
-import AuthRouter from "./Auth/auth.router.js";
 import UserRouter from "./User/user.router.js";
 import EmployeeRouter from "./Employee/employee.router.js";
 import AdminRouter from "./Admin/admin.router.js";
 import SuperAdminRouter from "./SuperAdmin/superAdmin.router.js";
 import cors from "cors";
+import AuthRouter from './Auth/auth.router.js';
+
+
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fullPath = path.join(__dirname, "../upload");
