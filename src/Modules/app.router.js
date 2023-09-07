@@ -33,7 +33,7 @@ const initApp = (app, express) => {
   app.use("/admin", AdminRouter);
   app.use("/superAdmin", SuperAdminRouter);
 
-  
+
   app.use('/',(req, res)=>{
     res.json({message : "App is running"})
   })
