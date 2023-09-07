@@ -7,7 +7,7 @@ import EmployeeRouter from "./Employee/employee.router.js";
 import AdminRouter from "./Admin/admin.router.js";
 import SuperAdminRouter from "./SuperAdmin/superAdmin.router.js";
 import cors from "cors";
-import AuthRouter from './Auth/auth.router.js';
+import AuthRouter from './authe/auth.router.js';
 
 
 
