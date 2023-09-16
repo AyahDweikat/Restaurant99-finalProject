@@ -17,7 +17,6 @@ export const signup = async (req, res, next) => {
 
   const link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`;
   const rLink = `${req.protocol}://${req.headers.host}/auth/newConfirmEmail/${rToken}`;
-
   const html = emailTemplate(link, rLink);
   await sendEmail(email, "Confirm Email", html);
   const createUser = await userModel.create({

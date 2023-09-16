@@ -4,7 +4,7 @@ export const changeToEmployee = async (req, res, next) => {
   const { employeeId } = req.params;
   const employee = await userModel.findById(employeeId);
   if (!employee) {
-    return next(new Error("invalid Employee"));
+    return next(new Error("invalid Employee", { cause: 404 }));
   }
   const updatedEmployee = await userModel.findOneAndUpdate(
     { _id: employeeId, role: "User" },
@@ -20,7 +20,7 @@ export const updateEmployeeSalary = async (req, res, next) => {
   const { salary } = req.body;
   const employee = await userModel.findById(employeeId);
   if (!employee) {
-    return next(new Error("invalid Employee"));
+    return next(new Error("invalid Employee", { cause: 404 }));
   }
   const updatedEmplyee = await userModel.findOneAndUpdate(
     { _id: employeeId, role: "Employee" },
@@ -35,7 +35,7 @@ export const deleteEmployee = async (req, res, next) => {
   const { employeeId } = req.params;
   const employee = await userModel.findById(employeeId);
   if (!employee) {
-    return next(new Error("invalid Employee"));
+    return next(new Error("invalid Employee", { cause: 404 }));
   }
   const updatedEmplyee = await userModel.findOneAndUpdate(
     { _id: employeeId, role: "Employee" },
@@ -49,26 +49,6 @@ export const deleteEmployee = async (req, res, next) => {
 };
 export const getAllEmployees = async (req, res, next) => {
   const allEmployees = await userModel.find({ role: "Employee" });
-  if (!allEmployees) return next(new Error("No Employees"));
+  if (!allEmployees) return next(new Error("No Employees", { cause: 404 }));
   return res.status(201).json({ message: "success", allEmployees });
 };
-
-// export const changeActiveStatus = async (req, res, next) => {
-//   const { employeeId } = req.params;
-//   const employee = await userModel.findById(employeeId);
-//   if (!employee) {
-//     return next(new Error("invalid Employee"));
-//   }
-//   const updatedEmployee = {}
-//   if(employee.status == 'Not_Active') {
-//     updatedEmployee = await userModel.findByIdAndUpdate(employeeId, {
-//       status: "Active",
-//     });
-//   }
-//   else {
-//     updatedEmployee = await userModel.findByIdAndUpdate(employeeId, {
-//       status: "Not_Active",
-//     });
-//   }
-//   return res.json({ message: "success", updatedEmployee });
-// };

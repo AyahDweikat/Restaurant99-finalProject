@@ -16,10 +16,12 @@ export const auth = (accessRoles = []) => {
     if (!token) {
       return next(new Error(`Token Data not found`, { cause: 404 }));
     }
-    const decoded = verifyToken(token, process.env.LOGIN_TOKEN);
+    let decoded = verifyToken(token, process.env.LOGIN_TOKEN);
     if (!decoded) {
-      return next(new Error(` Error in token decoded`, { cause: 404 }));
+      return next(new Error(`Error in token decoded`, { cause: 404 }));
     }
+    if(decoded.err) return next(new Error(`Expired Token`, { cause: 400 }));
+    decoded = decoded.result;
     const user = await userModel.findOne({ _id: decoded.id });
     if (!user) return next(new Error(`Not Registered User`, { cause: 401 }));
     if (!accessRoles.includes(user.role)) {

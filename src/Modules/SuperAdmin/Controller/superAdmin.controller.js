@@ -4,10 +4,10 @@ export const changeToSuperAdmin = async (req, res, next) => {
   const { superAdminId } = req.params;
   const superAdmin = await userModel.findById(superAdminId);
   if (!superAdmin) {
-    return next(new Error("invalid SuperAdmin"));
+    return next(new Error("invalid SuperAdmin", { cause: 404 }));
   }
   else if(superAdmin.role=='SuperAdmin'){
-    return next(new Error("CThe user is already SuperAdmin"));
+    return next(new Error("The user is already SuperAdmin", { cause: 404 }));
   }
   const updatedSuperAdmin = await userModel.findOneAndUpdate(
     { _id: superAdminId },
@@ -23,7 +23,7 @@ export const updateSuperAdminSalary = async (req, res, next) => {
   const { salary } = req.body;
   const superAdmin = await userModel.findOne({_id:superAdminId, role:'SuperAdmin'});
   if (!superAdmin) {
-    return next(new Error("Invalid SuperAdmin"));
+    return next(new Error("Invalid SuperAdmin", { cause: 404 }));
   }
   const updatedSuperAdmin = await userModel.findOneAndUpdate(
     { _id: superAdminId, role: "SuperAdmin" },
@@ -38,7 +38,7 @@ export const deleteSuperAdmin = async (req, res, next) => {
   const { superAdminId } = req.params;
   const superAdmin = await userModel.findOne({_id:superAdminId, role:'SuperAdmin'});
   if (!superAdmin) {
-    return next(new Error("invalid SuperAdmin"));
+    return next(new Error("invalid SuperAdmin", { cause: 404 }));
   }
   const updatedSuperAdmin = await userModel.findOneAndUpdate(
     { _id: superAdminId, role: "SuperAdmin" },
@@ -53,6 +53,6 @@ export const deleteSuperAdmin = async (req, res, next) => {
 };
 export const getAllSuperAdmins = async (req, res, next) => {
   const allSuperAdmins = await userModel.find({ role: "SuperAdmin" });
-  if (!allSuperAdmins) return next(new Error("No Admins"));
+  if (!allSuperAdmins) return next(new Error("No Admins", { cause: 404 }));
   return res.status(201).json({ message: "success", allSuperAdmins });
 };

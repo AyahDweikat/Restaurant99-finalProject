@@ -10,6 +10,6 @@ export const generateToken = (
 };
 
 export const verifyToken = (token, signature) => {
-  const decoded = jwt.verify(token, signature);
+    const decoded = jwt.verify(token, signature, (err, result) => { return { err: err, result: result, } });
   return decoded;
 };
