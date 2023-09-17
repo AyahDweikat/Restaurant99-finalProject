@@ -1,9 +1,9 @@
 import cloudinary from "./../../../Services/cloudinary.js";
 import * as dotenv from "dotenv";
 import slugify from "slugify";
-import { pagination } from "../../../Services/pagination.js";
 import menuItemModel from "../../../../DB/Model/Item.model.js";
 import categoryModel from "./../../../../DB/Model/Category.model.js";
+import { pagination } from './../../../Services/pagination.js';
 
 export const addItem = async (req, res, next) => {
   const { name, price, discount, categoryId, description, ingredients, size } =
@@ -200,7 +200,7 @@ export const getAllItems = async (req, res, next) => {
   const { skip, limit } = pagination(page, size);
   const excQueryParams = ["page", "size", "sort", "search"];
   const filterQuery = { ...req.query };
-  excQueryParams.filter((params) => {
+  excQueryParams.map((params) => {
     delete filterQuery[params];
   });
   const query = JSON.parse(
@@ -211,20 +211,20 @@ export const getAllItems = async (req, res, next) => {
   );
 
   const mongoQuery = menuItemModel
-    .find()
-    // .limit(limit)
-    // .skip(skip)
-    // .sort(req.query?.sort?.replaceAll(",", " "));
+    .find({isDeleted:false, ...query})
+    .limit(limit)
+    .skip(skip)
+    .sort(req.query?.sort?.replaceAll(",", " "));
 
   let allItems = 
-  // req.query.search
-  //   ? await mongoQuery.find({
-  //       $or: [
-  //         { name: { $regex: req.query?.search, $options: "i" } },
-  //         { description: { $regex: req.query?.search, $options: "i" } },
-  //       ],
-  //     })
-    // : 
+  req.query.search
+    ? await mongoQuery.find({
+        $or: [
+          { name: { $regex: req.query?.search, $options: "i" } },
+          { description: { $regex: req.query?.search, $options: "i" } },
+        ],
+      })
+    : 
     await mongoQuery;
 
   if (!allItems) {
