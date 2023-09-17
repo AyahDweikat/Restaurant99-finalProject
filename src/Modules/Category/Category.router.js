@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { auth, roles } from "../../Middleware/auth.middleware.js";
 import { endPoint } from "./Category.endpoint.js";
-import fileUpload, { fileValidation } from './../../Services/multer';
+import fileUpload, { fileValidation } from './../../Services/multer.js';
 import * as validators from "./Category.validation.js";
 import validation from "../../Middleware/validation.js";
-import { asyncHandler } from './../../Services/errorHandling';
+import { asyncHandler } from './../../Services/errorHandling.js';
 import * as CategoryController from "./Controller/Category.controller.js";
 
 const router = Router({caseSensitive:true});
@@ -22,11 +22,11 @@ router.put(
   validation(validators.updateCategorySchema),
   asyncHandler(CategoryController.updateCategory)
 );
-router.patch(
+router.delete(
   "/deleteCategory/:categoryId",
   auth(endPoint.delete),
   validation(validators.deleteCategorySchema),
-  asyncHandler(CategoryController.updateCategory)
+  asyncHandler(CategoryController.deleteCategory)
 );
 
 router.get(
