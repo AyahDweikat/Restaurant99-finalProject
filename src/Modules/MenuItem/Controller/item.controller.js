@@ -1,4 +1,3 @@
-import brandModel from "./../../../../DB/model/Brand.model.js";
 import cloudinary from "./../../../Services/cloudinary.js";
 import * as dotenv from "dotenv";
 import slugify from "slugify";

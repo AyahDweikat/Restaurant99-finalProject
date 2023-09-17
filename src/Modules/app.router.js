@@ -29,7 +29,7 @@ const initApp = (app, express) => {
   app.use(cors());
   connectDB();
   app.use(express.json());
-  app.use("/upload", express.static(fullPath));
+  // app.use("/upload", express.static(fullPath));
   app.use("/auth", AuthRouter);
   app.use("/user", UserRouter);
   app.use("/employee", EmployeeRouter);
