@@ -8,7 +8,7 @@ import AdminRouter from "./Admin/admin.router.js";
 import SuperAdminRouter from "./SuperAdmin/superAdmin.router.js";
 import cors from "cors";
 import AuthRouter from './authe/auth.router.js';
-import categoryRouter from './Category/category.router.js';
+import CategoryRouter from './Category/Category.router.js';
 import menuItemRouter from './MenuItem/menuItem.router.js';
 
 
@@ -35,8 +35,8 @@ const initApp = (app, express) => {
   app.use("/employee", EmployeeRouter);
   app.use("/admin", AdminRouter);
   app.use("/superAdmin", SuperAdminRouter);
-  app.use("/category", categoryRouter);
-  app.use("/menuItem", menuItemRouter);
+  app.use("/category", CategoryRouter);
+  // app.use("/menuItem", menuItemRouter);
 
 
 
