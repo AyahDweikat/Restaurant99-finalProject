@@ -9,7 +9,7 @@ import SuperAdminRouter from "./SuperAdmin/superAdmin.router.js";
 import cors from "cors";
 import AuthRouter from './authe/auth.router.js';
 import CategoryRouter from './Category/Category.router.js';
-import menuItemRouter from './MenuItem/MenuItem.router.js';
+import menuItemRouter from './MenuItem/item.router.js';
 
 
 

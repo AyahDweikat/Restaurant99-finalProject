@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { auth } from "../../Middleware/auth.middleware.js";
-import { endPoint } from "./menuItem.endpoint.js";
+import { endPoint } from "./item.endpoint.js";
 import fileUpload, { fileValidation } from "./../../Services/multer.js";
 import validation from "../../Middleware/validation.js";
-import * as validators from "./menuItem.validation.js";
+import * as validators from "./item.validation.js";
 import { asyncHandler } from "./../../Services/errorHandling.js";
 import * as menuItemsController from "./Controller/item.controller.js";
 
