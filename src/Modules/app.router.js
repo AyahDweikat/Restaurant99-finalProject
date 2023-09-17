@@ -35,7 +35,7 @@ const initApp = (app, express) => {
   app.use("/admin", AdminRouter);
   app.use("/superAdmin", SuperAdminRouter);
   app.use("/category", CategoryRouter);
-  // app.use("/menuItem", menuItemRouter);
+  app.use("/menuItem", menuItemRouter);
   app.use("/upload", express.static(fullPath));
 
 
