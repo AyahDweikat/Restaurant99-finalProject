@@ -1,5 +1,5 @@
-import path from "path";
-import { fileURLToPath } from "url";
+// import path from "path";
+// import { fileURLToPath } from "url";
 import { globalErrorHandle } from "../Services/errorHandling.js";
 import connectDB from "../../DB/connection.js";
 import UserRouter from "./User/user.router.js";
@@ -15,8 +15,8 @@ import menuItemRouter from './MenuItem/item.router.js';
 
 
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const fullPath = path.join(__dirname, "../upload");
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// const fullPath = path.join(__dirname, "../upload");
 
 const initApp = (app, express) => {
 //   app.use(async (req, res, next) => {
@@ -36,7 +36,7 @@ const initApp = (app, express) => {
   app.use("/superAdmin", SuperAdminRouter);
   app.use("/category", CategoryRouter);
   app.use("/menuItem", menuItemRouter);
-  app.use("/upload", express.static(fullPath));
+  // app.use("/upload", express.static(fullPath));
 
 
 
