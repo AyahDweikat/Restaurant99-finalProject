@@ -7,3 +7,9 @@ export const getAllRoles = ()=>{
     }
     return allRoles;
 }
+export const foodSizes = {
+    small: 'sm',
+    medium: 'md',
+    large: 'lg',
+    xLarge: 'xl',
+  }
