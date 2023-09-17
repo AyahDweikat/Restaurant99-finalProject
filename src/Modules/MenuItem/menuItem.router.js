@@ -9,7 +9,7 @@ import * as menuItemsController from "./Controller/item.controller.js";
 
 // import reviewRouter from '../Review/review.router.js';
 
-const router = Router({ caseSensitive: true, mergeParams: true });
+const router = Router({ mergeParams: true });
 
 // router.use('/:itemId/review', reviewRouter)
 router.post(
@@ -32,8 +32,6 @@ router.put(
   validation(validators.updateItemSchema),
   asyncHandler(menuItemsController.updateItem)
 );
-
-
 
 router.patch(
   "/softDeleteItem/:itemId",
@@ -67,11 +65,6 @@ router.patch(
   asyncHandler(menuItemsController.changeToAvailable)
 );
 
-
-
-
-
-
 router.get(
   "/getItemInfo/:itemId",
   auth(endPoint.get),
@@ -89,6 +82,9 @@ router.get(
   validation(validators.getItemsSchema),
   asyncHandler(menuItemsController.getItemsFormCategory)
 );
-router.get("/getAllItems", auth(endPoint.get), 
-asyncHandler(menuItemsController.getAllItems));
+router.get(
+  "/getAllItems",
+  auth(endPoint.get),
+  asyncHandler(menuItemsController.getAllItems)
+);
 export default router;

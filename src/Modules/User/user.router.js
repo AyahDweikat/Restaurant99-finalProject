@@ -7,7 +7,7 @@ import { asyncHandler } from "../../Services/errorHandling.js";
 import * as userController from "./Controller/user.controller.js";
 import { endPoint } from "./user.endpoint.js";
 
-const router = Router({ caseSensitive: true });
+const router = Router();
 
 router.patch(
   "/profilePic",

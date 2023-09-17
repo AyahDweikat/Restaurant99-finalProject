@@ -7,7 +7,7 @@ import * as validators from "./employee.validation.js";
 import { asyncHandler } from "../../Services/errorHandling.js";
 import * as employeeController from "./Controller/employee.controller.js";
 
-const router = Router({ caseSensitive: true });
+const router = Router();
 
 router.patch(
   "/changeToEmployee/:employeeId",

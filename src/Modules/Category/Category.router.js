@@ -7,7 +7,7 @@ import validation from "../../Middleware/validation.js";
 import { asyncHandler } from './../../Services/errorHandling.js';
 import * as CategoryController from "./Controller/Category.controller.js";
 
-const router = Router({caseSensitive:true});
+const router = Router();
 router.post(
   "/addCategory",
   auth(endPoint.create),

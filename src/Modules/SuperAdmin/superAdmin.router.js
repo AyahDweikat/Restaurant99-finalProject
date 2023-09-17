@@ -6,7 +6,7 @@ import * as validators from "./superAdmin.validation.js";
 import { asyncHandler } from './../../Services/errorHandling.js';
 import * as superAdminController from "./Controller/superAdmin.controller.js";
 
-const router = Router({ caseSensitive: true });
+const router = Router();
 
 router.patch(
   "/changeToSuperAdmin/:superAdminId",

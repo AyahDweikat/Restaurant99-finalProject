@@ -6,7 +6,7 @@ import * as validators from "./admin.validation.js";
 import { asyncHandler } from "../../Services/errorHandling.js";
 import * as adminController from "./Controller/admin.controller.js";
 
-const router = Router({ caseSensitive: true });
+const router = Router();
 
 router.patch(
   "/changeToAdmin/:adminId",

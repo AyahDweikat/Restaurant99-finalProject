@@ -4,7 +4,7 @@ import validation from "../../Middleware/validation.js";
 import * as validators from "./auth.validation.js";
 import { asyncHandler } from './../../Services/errorHandling.js';
 
-const router = Router({ caseSensitive: true });
+const router = Router();
 
 router.post(
   "/signup",
