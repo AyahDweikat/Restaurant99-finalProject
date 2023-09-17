@@ -5,7 +5,7 @@ import fs from 'fs';
 import {fileURLToPath} from 'url';
  const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const fileValidation ={
-    image:['image/jpeg', 'image/png'],
+    image:['image/jpeg', 'image/png', 'image/jpg'],
     file:['application/pdf']
 }
 function fileUpload(customValidation=[], customPath='public'){
