@@ -29,7 +29,6 @@ const initApp = (app, express) => {
   app.use(cors());
   connectDB();
   app.use(express.json());
-  // app.use("/upload", express.static(fullPath));
   app.use("/auth", AuthRouter);
   app.use("/user", UserRouter);
   app.use("/employee", EmployeeRouter);
@@ -37,6 +36,7 @@ const initApp = (app, express) => {
   app.use("/superAdmin", SuperAdminRouter);
   app.use("/category", CategoryRouter);
   // app.use("/menuItem", menuItemRouter);
+  app.use("/upload", express.static(fullPath));
 
 
 
