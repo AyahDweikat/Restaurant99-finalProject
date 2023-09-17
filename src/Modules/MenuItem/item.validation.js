@@ -5,7 +5,7 @@ import { foodSizes } from "../../Services/getAllRoles.js";
 export const addItemSchema = 
 joi.object({
     name: joi.string().min(2).max(20).required(),
-    // file: generalFeilds.file.required(), 
+    file: generalFeilds.file, 
     categoryId:generalFeilds.id.required(),
     description: joi.string(),
     ingredients: joi.string(),
@@ -16,6 +16,7 @@ joi.object({
 
 export const updateItemSchema = 
 joi.object({
+    itemId:generalFeilds.id,
     name: joi.string().min(2).max(20),//
     file: generalFeilds.file,
     categoryId:generalFeilds.id,//
