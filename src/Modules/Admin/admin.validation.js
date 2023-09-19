@@ -4,6 +4,7 @@ import { generalFeilds } from "../../Middleware/validation.js";
 export const changeToAdminSchema = joi
   .object({
     adminId: generalFeilds.id,
+    branchId: generalFeilds.id,
   })
   .required();
 

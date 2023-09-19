@@ -12,6 +12,7 @@ export const changeToAdmin = async (req, res, next) => {
     { _id: adminId },
     {
       role: "Admin",
+      branchId: req.body.branchId
     },
     { new: true }
   );
@@ -45,6 +46,7 @@ export const deleteAdmin = async (req, res, next) => {
       role: "User",
       salary: 0,
       status: "Active",
+      branchId:'000000000000000000000000'
     },
     { new: true }
   );

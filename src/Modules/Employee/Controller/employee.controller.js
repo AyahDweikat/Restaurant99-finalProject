@@ -10,6 +10,7 @@ export const changeToEmployee = async (req, res, next) => {
     { _id: employeeId, role: "User" },
     {
       role: "Employee",
+      branchId: req.body.branchId
     },
     { new: true }
   );
@@ -42,6 +43,7 @@ export const deleteEmployee = async (req, res, next) => {
     {
       role: "User",
       salary: 0,
+      branchId:'000000000000000000000000'
     },
     { new: true }
   );

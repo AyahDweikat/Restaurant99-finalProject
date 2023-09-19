@@ -25,6 +25,7 @@ const userSchema = new Schema ({
     coverPic:{
         type:Object,
     },
+    branchId:{ type: Types.ObjectId, ref: "Branch"},
     phone:{
         type:String,
     },
