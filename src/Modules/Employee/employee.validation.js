@@ -4,6 +4,7 @@ import { generalFeilds } from "../../Middleware/validation.js";
 export const changeToEmployeeSchema = joi
   .object({
     employeeId: generalFeilds.id,
+    branchId: generalFeilds.id,
   })
   .required();
 export const deleteEmployeeSchema = joi
