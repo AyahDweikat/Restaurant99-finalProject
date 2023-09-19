@@ -12,7 +12,6 @@ const branchSchema = new Schema(
     address: {
       type: String,
     },
-    // adminId: { type: Types.ObjectId, ref: "User"},
     createdBy: { type: Types.ObjectId, ref: "User", required: true },
     updatedBy: { type: Types.ObjectId, ref: "User"},
   },
@@ -24,7 +23,7 @@ const branchSchema = new Schema(
 );
 branchSchema.virtual("employees", {
   localField: "_id",
-  foreignField: "brandId",
+  foreignField: "branchId",
   ref: "User",
 });
 branchSchema.virtual("admin", {
