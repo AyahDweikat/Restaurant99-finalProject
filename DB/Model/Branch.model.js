@@ -13,7 +13,7 @@ const branchSchema = new Schema(
       type: String,
     },
     createdBy: { type: Types.ObjectId, ref: "User", required: true },
-    updatedBy: { type: Types.ObjectId, ref: "User"},
+    updatedBy: { type: Types.ObjectId, ref: "User", required: true },
   },
   {
     toJSON: { virtuals: true },
@@ -30,6 +30,11 @@ branchSchema.virtual("admin", {
   localField: "_id",
   foreignField: "branchId",
   ref: "User",
+});
+branchSchema.virtual("tables", {
+  localField: "_id",
+  foreignField: "branchId",
+  ref: "Table",
 });
 const branchModel = mongoose.models.Branch || model("Branch", branchSchema);
 export default branchModel;

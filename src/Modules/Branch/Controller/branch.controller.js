@@ -5,6 +5,7 @@ export const addBranch = async (req, res, next) => {
   const newBranch = await branchModel.create({
     ...req.body,
     createdBy: req.user._id,
+    updatedBy: req.user._id,
   });
   return res.status(201).json({
     message: "successfully added Branch",
@@ -16,9 +17,10 @@ export const updateBranch = async (req, res, next) => {
   const { branchId } = req.params;
   const branch = await branchModel.findOneAndUpdate(
     { _id: branchId },
-    req.body,
+    {...req.body, updatedBy: req.user._id},
     { new: true }
   );
+  if (!branch) return next(new Error(`Invalid Branch Id`, { cause: 400 }));
   return res.status(201).json({
     message: "successfully updated Branch",
     branch,
@@ -28,6 +30,8 @@ export const updateBranch = async (req, res, next) => {
 export const deleteBranch = async (req, res, next) => {
   const { branchId } = req.params;
   const deletedBranch = await branchModel.findOneAndDelete({ _id: branchId });
+  if (!deletedBranch) return next(new Error(`Can't Delete this item`, { cause: 400 }));
+  
   return res.status(201).json({
     message: "successfully deleted Branch",
     deletedBranch,
@@ -45,7 +49,11 @@ export const getBranchInfo = async (req, res, next) => {
     .populate({
       path: "admin",
       match: { role: { $eq: "Admin" } },
+    })
+    .populate({
+      path: "tables"
     });
+  if (!branch) return next(new Error(`Invalid Branch`, { cause: 400 }));
 
   return res.status(201).json({
     message: "successfully get Branch Info",
@@ -63,6 +71,11 @@ export const getAllBranches = async (req, res, next) => {
     path: "admin",
     match: { role: { $eq: 'Admin' } },
   })
+  .populate({
+    path: "tables"
+  });
+  if (!branch) return next(new Error(`Invalid Branches`, { cause: 400 }));
+
   return res.status(201).json({
     message: "successfully get All Branches",
     allBranches,

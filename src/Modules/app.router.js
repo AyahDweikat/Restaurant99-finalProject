@@ -11,6 +11,8 @@ import AuthRouter from './authe/auth.router.js';
 import CategoryRouter from './Category/Category.router.js';
 import menuItemRouter from './MenuItem/item.router.js';
 import branchRouter from './Branch/branch.router.js';
+import tableRouter from './Table/table.router.js';
+
 
 
 
@@ -39,6 +41,8 @@ const initApp = (app, express) => {
   app.use("/category", CategoryRouter);
   app.use("/menuItem", menuItemRouter);
   app.use("/branch", branchRouter);
+  app.use("/table", tableRouter);
+
 
   // app.use("/upload", express.static(fullPath));
 

@@ -114,7 +114,7 @@ export const changeToUnAvailable = async (req, res, next) => {
   const { itemId } = req.params;
   const item = await menuItemModel.findOneAndUpdate(
     { _id: itemId, isDeleted: false, isAvailable: true },
-    { isAvailable: false },
+    { isAvailable: false, updatedBy: req.user._id },
     { new: true }
   );
   if (!item) {
@@ -126,7 +126,7 @@ export const changeToAvailable = async (req, res, next) => {
   const { itemId } = req.params;
   const item = await menuItemModel.findOneAndUpdate(
     { _id: itemId, isDeleted: false, isAvailable: false },
-    { isAvailable: true },
+    { isAvailable: true, updatedBy: req.user._id },
     { new: true }
   );
   if (!item) {
@@ -139,7 +139,7 @@ export const softDeleteItem = async (req, res, next) => {
   const { itemId } = req.params;
   const item = await menuItemModel.findOneAndUpdate(
     { _id: itemId, isDeleted: false },
-    { isDeleted: true },
+    { isDeleted: true, updatedBy: req.user._id },
     { new: true }
   );
   if (!item) {
@@ -162,7 +162,7 @@ export const restoreDeletedItem = async (req, res, next) => {
   const { itemId } = req.params;
   const item = await menuItemModel.findOneAndUpdate(
     { _id: itemId, isDeleted: true },
-    { isDeleted: false },
+    { isDeleted: false, updatedBy: req.user._id, },
     { new: true }
   );
   if (!item) {
