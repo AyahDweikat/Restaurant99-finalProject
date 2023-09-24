@@ -45,14 +45,16 @@ const menuItemSchema = new Schema(
     updatedBy: { type: Types.ObjectId, ref: "User", required: true }, // required true after prototype
   },
   {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
     timestamps: true,
   }
 );
 
-// menuItemSchema.virtual("reviews", {
-//   localField: "_id",
-//   foreignField: "itemId",
-//   ref: "Review",
-// });
+menuItemSchema.virtual("reviews", {
+  localField: "_id",
+  foreignField: "itemId",
+  ref: "Review",
+});
 const menuItemModel = mongoose.models.MenuItem || model("MenuItem", menuItemSchema);
 export default menuItemModel;

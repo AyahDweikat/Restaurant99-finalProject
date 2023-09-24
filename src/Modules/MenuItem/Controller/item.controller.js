@@ -168,7 +168,7 @@ export const getSoftDeletedItems = async (req, res, next) => {
 export const getItemInfo = async (req, res, next) => {
   const { itemId } = req.params;
   const item = await menuItemModel.findOne({ _id: itemId })
-  // .populate("reviews");
+  .populate("reviews");
   if (!item) {
     return next(new Error(`Error to get Item`, { cause: 409 }));
   }

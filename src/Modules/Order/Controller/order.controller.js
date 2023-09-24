@@ -1,4 +1,3 @@
-// import { createInvoiceFromOrder } from '../../../Services/orderInvoice.js';
 import orderModel from "./../../../../DB/Model/Order.model.js";
 import menuItemModel from "./../../../../DB/Model/Item.model.js";
 
@@ -42,7 +41,6 @@ export const addOrder = async (req, res, next) => {
     status: paymentType == "card" ? "approved" : "pending",
     personsNumber,
   });
-  // createInvoiceFromOrder(order, req.user)
   return res.status(201).json({ message: "successfully added Order", order });
 };
 
@@ -94,7 +92,6 @@ export const updateOrder = async (req, res, next) => {
   if (note) order.note = note;
   if (personsNumber) order.personsNumber = personsNumber;
   order.save();
-  // createInvoiceFromOrder(order, req.user)
   return res.status(201).json({ message: "successfully added Order", order });
 };
 

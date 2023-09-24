@@ -6,12 +6,11 @@ import validation from "../../Middleware/validation.js";
 import * as validators from "./item.validation.js";
 import { asyncHandler } from "./../../Services/errorHandling.js";
 import * as menuItemsController from "./Controller/item.controller.js";
-
-// import reviewRouter from '../Review/review.router.js';
+import reviewRouter from '../Review/review.router.js';
 
 const router = Router({ mergeParams: true });
 
-// router.use('/:itemId/review', reviewRouter)
+router.use('/:itemId/review', reviewRouter)
 router.post(
   "/addItem",
   auth(endPoint.create),

@@ -68,7 +68,7 @@ export const getCategory = async (req, res, next) => {
   const category = await categoryModel.findById(req.params.categoryId).populate({
       path: "menuItems",
       match: { isDeleted: { $eq: false } },
-      // populate:{path:"reviews"}
+      populate:{path:"reviews"}
     });
   if (!category) return next(new Error(`Invalid Category Id`, { cause: 400 }));
   return res.status(200).json({ message: "Category data", results: category });
@@ -78,7 +78,7 @@ export const getAllCategories = async (req, res) => {
   const categories = await categoryModel.find().populate({
     path: "menuItems",
     match: { isDeleted: { $eq: false } },
-    //     populate:{path:"reviews"}
+        populate:{path:"reviews"}
   });
   return res
     .status(200)

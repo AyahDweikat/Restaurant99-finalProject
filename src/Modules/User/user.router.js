@@ -48,7 +48,7 @@ router.delete(
 )
 router.get(
   "/getAllUsers",
-  // auth(endPoint.getAllUsers),
+  auth(endPoint.getAllUsers),
   asyncHandler(userController.getAllUsers)
 );
 
