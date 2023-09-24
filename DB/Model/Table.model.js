@@ -5,11 +5,13 @@ const tableSchema = new Schema ({
         required:true,
     },
     branchId: { type: Types.ObjectId, ref: "Branch", required:true},
+    orderId: { type: Types.ObjectId, ref: "Order"},
     isReserved:{
         type: Boolean, 
         default: false,
     },
     reservedTo: { type: Types.ObjectId, ref: "User"},
+    chairsNumber: { type: Number, required: true },
     createdBy: { type: Types.ObjectId, ref: "User", required:true},
     updatedBy: { type: Types.ObjectId, ref: "User", required:true},
 },

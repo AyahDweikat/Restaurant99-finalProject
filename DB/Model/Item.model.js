@@ -17,19 +17,10 @@ const menuItemSchema = new Schema(
     description: {
         type: String,
     },
-    price: {
-      type: Number,
+    prices: {
+      type: Object,
       default: 1,
     },
-    finalPrice: {
-      type: Number,
-      default: 1,
-    },
-    discount: {
-      type: Number,
-      default: 0,
-    },
-    sizes: [{ type: String, enum: ["sm", "md", "lg", "xl"] }],
     mainImage: {
       type: Object,
       required: true,

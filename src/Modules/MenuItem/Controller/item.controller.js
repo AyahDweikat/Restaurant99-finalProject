@@ -6,7 +6,7 @@ import categoryModel from "./../../../../DB/Model/Category.model.js";
 import { pagination } from './../../../Services/pagination.js';
 
 export const addItem = async (req, res, next) => {
-  const { name, price, discount, categoryId, description, ingredients, size } =
+  const { name, prices, categoryId, description, ingredients, size } =
     req.body;
   const checkCategory = await categoryModel.findOne({
     _id: categoryId,
@@ -15,7 +15,6 @@ export const addItem = async (req, res, next) => {
     return next(new Error(`Invalid Category`, { cause: 409 }));
 
   req.body.slug = slugify(name);
-  req.body.finalPrice = price * (1 - (discount || 0));
   if (req.files.mainImage) {
     const { public_id, secure_url } = await cloudinary.uploader.upload(
       req.files.mainImage[0].path,
@@ -46,7 +45,7 @@ export const updateItem = async (req, res, next) => {
   const item = await menuItemModel.findOne({ _id: itemId });
   if (!item) return next(new Error(`Invalid Item Id`, { cause: 400 }));
 
-  const { name, price, discount, categoryId, description, ingredients, size } =
+  const { name, prices, categoryId, description, ingredients } =
     req.body;
   if (categoryId) {
     const checkCategory = await categoryModel.findOne({
@@ -68,18 +67,6 @@ export const updateItem = async (req, res, next) => {
   }
   if (req.body.sizes) {
     item.sizes = req.body.sizes;
-  }
-
-  if (price && discount) {
-    item.price = price;
-    item.discount = discount;
-    item.finalPrice = price * (1 - (discount || 0));
-  } else if (price) {
-    item.price = price;
-    item.finalPrice = price * (1 - item.discount);
-  } else if (discount) {
-    item.discount = discount;
-    item.finalPrice = item.price * (1 - discount);
   }
   if (req.files?.mainImage?.length) {
     const { public_id, secure_url } = await cloudinary.uploader.upload(

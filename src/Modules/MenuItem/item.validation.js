@@ -9,7 +9,7 @@ joi.object({
     categoryId:generalFeilds.id.required(),
     description: joi.string(),
     ingredients: joi.string(),
-    price: joi.number().min(0),
+    prices: joi.object(),
     discount: joi.number().min(0),
     size:joi.string().valid(...Object.values(foodSizes))
 }).required()
@@ -22,7 +22,7 @@ joi.object({
     categoryId:generalFeilds.id,//
     description: joi.string(),//
     ingredients: joi.string(),//
-    price: joi.number().min(0),//
+    prices: joi.number().min(0),//
     discount: joi.number().min(0),//
     size:joi.string().valid(...Object.values(foodSizes))//
 }).required()
