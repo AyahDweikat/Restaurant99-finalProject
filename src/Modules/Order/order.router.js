@@ -14,12 +14,6 @@ router.post(
   validation(validators.addOrderSchema),
   asyncHandler(OrderController.addOrder)
 );
-// router.post(
-//   "/addEvent",
-//   auth(endPoint.create),
-//   validation(validators.addEventSchema),
-//   asyncHandler(OrderController.addEvent)
-// );
 router.patch(
   "/updateOrder/:orderId",
   auth(endPoint.update),

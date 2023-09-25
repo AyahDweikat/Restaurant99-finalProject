@@ -29,7 +29,16 @@ router.patch(
   validation(validators.reserveTableSchema),
   asyncHandler(TableController.reserveTable)
 );
-
+router.patch(
+  "/addEvent/:branchId",
+  auth(endPoint.reserve),
+  asyncHandler(TableController.addEvent)
+);
+router.patch(
+  "/removeEvent/:branchId",
+  auth(endPoint.reserve),
+  asyncHandler(TableController.removeEvent)
+);
 router.patch(
   "/removeReservation/:tableId",
   auth(endPoint.reserve),

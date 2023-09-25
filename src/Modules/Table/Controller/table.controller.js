@@ -41,6 +41,28 @@ export const reserveTable = async (req, res, next) => {
   });
 };
 
+export const addEvent = async (req, res, next) => {
+  const {branchId} =req.params;
+  const table = await tableModel.find(
+    {isReserved: true, branchId}
+  );
+  if (table.length) return next(new Error(`Can't reserve All Tables In this branch`, { cause: 400 }));
+  const event = await tableModel.updateMany({isReserved: false, branchId},{ $set: {isReserved:true, reservedTo: req.user._id} })
+  return res.status(201).json({
+    message: "successfully reserved All Tables for event you want",
+    event,
+  });
+};
+
+
+export const removeEvent = async (req, res, next) => {
+  const {branchId} =req.params;
+  const event = await tableModel.updateMany({isReserved: true, branchId, reservedTo:req.user._id},{$set:{isReserved:false, reservedTo:"000000000000000000000000"}})
+  return res.status(201).json({
+    message: "successfully remove event that reserved All Tables",
+    event,
+  });
+};
 export const removeReservation = async (req, res, next) => {
   const { tableId } = req.params;
   const table = await tableModel.findOneAndUpdate(

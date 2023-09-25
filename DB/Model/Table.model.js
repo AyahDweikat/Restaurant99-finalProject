@@ -16,6 +16,8 @@ const tableSchema = new Schema ({
     updatedBy: { type: Types.ObjectId, ref: "User", required:true},
 },
 {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
     timestamps:true,
 })
 const tableModel = mongoose.models.Table ||  model('Table', tableSchema);
